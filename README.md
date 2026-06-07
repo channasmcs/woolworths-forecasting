@@ -280,10 +280,4 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-## Author
-
-**Channa Senevirathne Mudiyanselage** — Master of Applied Technologies candidate at Unitec Institute of Technology, Auckland, New Zealand. Transitioning from 7 years of frontend engineering into data engineering.
-
----
-
 *Last updated: June 2026*
