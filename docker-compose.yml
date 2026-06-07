@@ -1,0 +1,44 @@
+# =============================================================================
+# Docker Compose for Woolworths NZ Demand Forecasting Project
+# =============================================================================
+# Usage:
+#   docker compose build                                      # Build image (one-time)
+#   docker compose run --rm jupyter python run_pipeline.py    # Run full pipeline
+#   docker compose up streamlit                               # Launch dashboard
+#   docker compose up jupyter                                 # Launch Jupyter
+#   docker compose down                                       # Stop everything
+# =============================================================================
+
+services:
+
+  jupyter:
+    build: .
+    container_name: woolworths-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    command: >
+      jupyter notebook
+        --ip=0.0.0.0
+        --port=8888
+        --no-browser
+        --allow-root
+        --NotebookApp.token=
+        --NotebookApp.password=
+        --notebook-dir=/workspace
+
+  streamlit:
+    build: .
+    container_name: woolworths-streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    command: >
+      streamlit run /workspace/app.py
+        --server.port=8501
+        --server.address=0.0.0.0
+        --server.headless=true
